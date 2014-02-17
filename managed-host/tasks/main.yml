@@ -1,0 +1,18 @@
+---
+- name: base/Create sysadmin users
+  action: user name="{{item.name}}" state=present groups="wheel" append=true
+  with_items: sysadmins
+  tags:
+    - reconfigure
+- name: base/Install sysadmin keys
+  action: authorized_key user="{{item.name}}" key="{{item.key}}"
+  tags:
+    - reconfigure
+  with_items: sysadmins
+- name: base/Install packages
+  action: yum pkg={{item}} state=latest
+  with_items:
+    - git
+    - gcc
+  tags:
+    - packages

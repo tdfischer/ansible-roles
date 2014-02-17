@@ -1,0 +1,10 @@
+[Unit]
+Description=hackerbots quassel core
+
+[Service]
+User=quassel
+WorkingDirectory=${quassel_path}
+ExecStart=/usr/bin/quasselcore -c ${quassel_path}
+
+[Install]
+WantedBy=multi-user.target

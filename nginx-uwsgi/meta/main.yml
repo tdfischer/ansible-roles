@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: uwsgi-server
+  - role: nginx-server
+    nginx_config: "include /etc/nginx/uwsgi-conf.d/*.conf;"

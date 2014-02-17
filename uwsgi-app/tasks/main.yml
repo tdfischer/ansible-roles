@@ -1,0 +1,44 @@
+---
+- name: uwsgi-app-$name/Install uwsgi packages
+  action: yum pkg=uwsgi-plugin-$plugin state=latest
+  when: plugin != ""
+  tags:
+   - packages
+- name: uwsgi-app-$name/Create directories
+  action: file state=directory dest=$item owner=uwsgi group=uwsgi
+  with_items:
+    - $uwsgi_app_path
+    - $uwsgi_data_path
+    - $uwsgi_static_path
+    - $uwsgi_log_path
+    - $uwsgi_tmp_path
+- name: uwsgi-app-$name/Update app from $git
+  action: git repo=$git dest=$uwsgi_app_path
+  notify: $on_update
+  tags:
+    - vcs
+  when: git != ""
+- name: uwsgi-app-$name/Chown $git to app
+  action: file path=$uwsgi_app_path group=$uwsgi_group owner=$uwsgi_user recurse=yes state=directory
+  tags:
+    - vcs
+  when: git != ""
+- name: uwsgi-app-$name/Install uwsgi vassal
+  action: template src=vassal-$plugin.ini dest=/etc/uwsgi.d/$name.ini owner=uwsgi group=uwsgi
+  tags:
+    - reconfigure
+  when: plugin != ""
+  notify:
+    - uwsgi-reload
+- name: uwsgi-app-$name/Create uwsgi-conf.d directory
+  action: file state=directory dest=/etc/nginx/uwsgi-conf.d
+- name: uwsgi-app-$name/Install nginx<->uwsgi app config
+  action: template src=$uwsgi_nginx_config dest=/etc/nginx/uwsgi-conf.d/$name.conf
+  tags:
+    - reconfigure
+  when: plugin != ""
+- name: uwsgi-app-$name/Configure app
+  action: template src={{uwsgi_config.src}} dest={{uwsgi_config.dest}} owner=$uwsgi_user group=$uwsgi_group
+  when: uwsgi_config.src
+  tags:
+    - reconfigure

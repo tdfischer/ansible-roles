@@ -1,0 +1,7 @@
+port: 80
+nginx_hostname: "{{name}}"
+nginx_config: ""
+nginx_root: ""
+ssl_cert: false
+ssl_key: false
+nginx_append: []

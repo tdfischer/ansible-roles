@@ -1,0 +1,7 @@
+---
+- name: nginx-server-{{name}}/Configure nginx
+  action: template src=nginx.conf dest="/etc/nginx/conf.d/{{name}}.conf"
+  tags:
+    - reconfigure
+  notify:
+    - nginx-reload

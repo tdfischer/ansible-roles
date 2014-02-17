@@ -1,0 +1,13 @@
+---
+- name: django-app/Install django packages
+  action: yum pkg=$item state=latest
+  with_items:
+    - python-pip
+    - python-virtualenv
+    - uwsgi-plugin-python
+  tags:
+    - packages
+- name: django-app/Setup virtualenv
+  action: pip virtualenv=/srv/uwsgi/{{name}}/virtualenv requirements=/srv/uwsgi/{{name}}/app/pip-requirements
+  tags:
+    - packages

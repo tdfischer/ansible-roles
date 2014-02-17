@@ -1,0 +1,20 @@
+---
+uwsgi_name: $name
+uwsgi_nginx_config: nginx-site.conf
+uwsgi_home: /srv/uwsgi
+uwsgi_prefix: $uwsgi_home/$uwsgi_name
+uwsgi_app_path: $uwsgi_prefix/app
+uwsgi_data_path: $uwsgi_prefix/data
+uwsgi_tmp_path: $uwsgi_prefix/tmp
+uwsgi_static_path: $uwsgi_prefix/static
+uwsgi_log_path: $uwsgi_prefix/log
+uwsgi_virtualenv_path: $uwsgi_prefix/virtualenv
+uwsgi_mount: $uwsgi_name
+uwsgi_user: uwsgi
+uwsgi_group: uwsgi
+uwsgi_config:
+  src: false
+  dest: false
+on_update: []
+git: ""
+plugin: ""

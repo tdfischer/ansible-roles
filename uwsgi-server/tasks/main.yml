@@ -1,0 +1,17 @@
+---
+- name: uwsgi-server/Install packages
+  action: yum pkg=$item state=latest
+  tags:
+    - packages
+  with_items:
+    - uwsgi
+- name: uwsgi-server/Configure uwsgi
+  action: template src=uwsgi.conf dest=/etc/uwsgi.ini owner=uwsgi group=uwsgi
+  tags:
+    - reconfigure
+  notify:
+    - uwsgi-reload
+- name: uwsgi-server/Start uwsgi
+  action: service name=uwsgi state=started enabled=yes
+  tags:
+    - services

@@ -1,0 +1,11 @@
+---
+- name: mediawiki-extension-{{name}}/Checkout plugin
+  action: git repo={{git}} dest={{uwsgi_app_path}}/extensions/{{name}}
+  tags:
+    - scm
+  when: "'{{git}}' != ''"
+- name: mediawiki-extension-{{name}}/Install plugin
+  action: copy src={{srcFile}} dest={{uwsgi_app_path}}/extensions/{{destFile}}
+  tags:
+    - scm
+  when: "'{{srcFile}}' != ''"

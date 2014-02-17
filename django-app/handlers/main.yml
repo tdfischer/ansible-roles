@@ -1,0 +1,8 @@
+---
+- name: django-syncdb
+  action: django_manage app_path=/srv/uwsgi/$name/app command=syncdb virtualenv=/srv/uwsgi/$name/virtualenv
+- name: django-collectstatic
+  action: django_manage app_path=/srv/uwsgi/$name/app command=collectstatic virtualenv=/srv/uwsgi/$name/virtualenv
+- name: django-migrate
+  action: django_manage app_path=/srv/uwsgi/$name/app command=migrate virtualenv=/srv/uwsgi/$name/virtualenv
+  ignore_errors: true

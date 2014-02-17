@@ -1,0 +1,3 @@
+---
+- name: uwsgi-reload
+  action: service name=uwsgi state=reloaded

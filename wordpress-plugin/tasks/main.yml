@@ -1,0 +1,5 @@
+---
+- name: wordpress-plugin-{{name}}/Checkout plugin
+  action: subversion repo={{repo}} dest={{uwsgi_app_path}}/wp-content/plugins/{{name}}
+  tags:
+    - scm
