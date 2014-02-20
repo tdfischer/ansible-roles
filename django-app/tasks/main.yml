@@ -11,3 +11,8 @@
   action: pip virtualenv=/srv/uwsgi/{{name}}/virtualenv requirements=/srv/uwsgi/{{name}}/app/pip-requirements
   tags:
     - packages
+- name: django-app/Install extra packages
+  action: pip virtualenv=/srv/uwsgi/{{name}}/virtualenv name={{item}}
+  with_items: uwsgi_extra_packages
+  tags:
+    - packages

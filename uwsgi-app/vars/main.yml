@@ -12,6 +12,7 @@ uwsgi_virtualenv_path: $uwsgi_prefix/virtualenv
 uwsgi_mount: $uwsgi_name
 uwsgi_user: uwsgi
 uwsgi_group: uwsgi
+uwsgi_extra_packages: []
 uwsgi_config:
   src: false
   dest: false
