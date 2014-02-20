@@ -1,2 +1,3 @@
 ssh_key_base: ""
 sysadmins: []
+extra_packages: []

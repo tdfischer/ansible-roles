@@ -16,3 +16,8 @@
     - gcc
   tags:
     - packages
+- name: base/Install extra packages
+  action: yum pkg={{item}} state=latest
+  with_items: extra_packages
+  tags:
+    - packages
