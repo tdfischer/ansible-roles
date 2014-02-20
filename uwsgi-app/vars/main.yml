@@ -16,6 +16,7 @@ uwsgi_extra_packages: []
 uwsgi_config:
   src: false
   dest: false
+uwsgi_buffer_size: 4096
 nginx_config: ""
 on_update: []
 git: ""
