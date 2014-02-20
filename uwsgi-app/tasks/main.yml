@@ -13,7 +13,7 @@
     - $uwsgi_log_path
     - $uwsgi_tmp_path
 - name: uwsgi-app-$name/Update app from $git
-  action: git repo=$git dest=$uwsgi_app_path
+  action: git repo=$git dest=$uwsgi_app_path version={{tag}}
   notify: $on_update
   tags:
     - vcs

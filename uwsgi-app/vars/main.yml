@@ -19,4 +19,5 @@ uwsgi_config:
 nginx_config: ""
 on_update: []
 git: ""
+tag: "master"
 plugin: ""
