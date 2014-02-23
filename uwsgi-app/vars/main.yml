@@ -8,6 +8,7 @@ uwsgi_data_path: $uwsgi_prefix/data
 uwsgi_tmp_path: $uwsgi_prefix/tmp
 uwsgi_static_path: $uwsgi_prefix/static
 uwsgi_log_path: $uwsgi_prefix/log
+uwsgi_logger: "file:{{uwsgi_log_path}}/uwsgi.log"
 uwsgi_virtualenv_path: $uwsgi_prefix/virtualenv
 uwsgi_mount: $uwsgi_name
 uwsgi_user: uwsgi
