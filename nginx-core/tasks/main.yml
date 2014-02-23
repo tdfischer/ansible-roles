@@ -3,6 +3,7 @@
   action: yum pkg=$item state=latest
   tags:
     - packages
+    - bootstrap
   with_items:
     - nginx
 - name: www/Configure nginx
@@ -15,3 +16,4 @@
   action: service name=nginx state=reloaded enabled=true
   tags:
     - services
+    - bootstrap

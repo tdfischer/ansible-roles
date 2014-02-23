@@ -3,6 +3,7 @@
   action: yum pkg=$item state=latest
   tags:
     - packages
+    - bootstrap
   with_items:
     - uwsgi
 - name: uwsgi-server/Configure uwsgi
@@ -15,3 +16,4 @@
   action: service name=uwsgi state=started enabled=yes
   tags:
     - services
+    - bootstrap

@@ -7,12 +7,15 @@
     - uwsgi-plugin-python
   tags:
     - packages
+    - bootstrap
 - name: django-app/Setup virtualenv
   action: pip virtualenv=/srv/uwsgi/{{name}}/virtualenv requirements=/srv/uwsgi/{{name}}/app/pip-requirements
   tags:
     - packages
+    - deploy
 - name: django-app/Install extra packages
   action: pip virtualenv=/srv/uwsgi/{{name}}/virtualenv name={{item}}
   with_items: uwsgi_extra_packages
   tags:
     - packages
+    - bootstrap
