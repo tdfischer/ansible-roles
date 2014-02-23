@@ -12,8 +12,10 @@
     - $uwsgi_static_path
     - $uwsgi_log_path
     - $uwsgi_tmp_path
-- name: uwsgi-app-$name/Update app from $git
-  action: git repo=$git dest=$uwsgi_app_path version={{tag}}
+  tags:
+    - bootstrap
+- name: uwsgi-app-$name/Update app from $git#$vcs_version
+  action: git repo=$git dest=$uwsgi_app_path remote=origin version=$vcs_version update=yes force=yes
   notify: $on_update
   tags:
     - vcs

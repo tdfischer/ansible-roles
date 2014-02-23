@@ -20,5 +20,4 @@ uwsgi_buffer_size: 4096
 nginx_config: ""
 on_update: []
 git: ""
-tag: "master"
 plugin: ""
