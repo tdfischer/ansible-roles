@@ -1,5 +1,5 @@
 ---
 dependencies:
   - role: uwsgi-app
-    on_update: [django-syncdb, django-collectstatic]
+    on_update: [django-syncdb, django-collectstatic, uwsgi-reload]
     plugin: python
