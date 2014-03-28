@@ -14,6 +14,7 @@ uwsgi_mount: $uwsgi_name
 uwsgi_user: uwsgi
 uwsgi_group: uwsgi
 uwsgi_extra_packages: []
+uwsgi_module: "{{name}}.uwsgi"
 uwsgi_config:
   src: false
   dest: false
