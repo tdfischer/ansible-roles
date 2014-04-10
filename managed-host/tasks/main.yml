@@ -1,16 +1,4 @@
 ---
-- name: base/Create sysadmin users
-  action: user name="{{item.name}}" state=present groups="wheel" append=true
-  with_items: sysadmins
-  tags:
-    - reconfigure
-    - bootstrap
-- name: base/Install sysadmin keys
-  action: authorized_key user="{{item.name}}" key="{{item.key}}"
-  tags:
-    - reconfigure
-    - bootstrap
-  with_items: sysadmins
 - name: base/Install packages
   action: yum pkg={{item}} state=latest
   with_items:
@@ -25,3 +13,24 @@
   tags:
     - packages
     - bootstrap
+- name: base/Create sysadmin users
+  action: user name="{{item.name}}" state=present groups="wheel" append=true
+  with_items: sysadmins
+  tags:
+    - reconfigure
+    - bootstrap
+- name: base/Install sysadmin keys
+  action: authorized_key user="{{item.name}}" key="{{item.key}}"
+  tags:
+    - reconfigure
+    - bootstrap
+  with_items: sysadmins
+- name: base/Configure hostname
+  action: lineinfile dest=/etc/sysconfig/network regexp="^HOSTNAME=" line="HOSTNAME={{hostname}}"
+  when: hostname != ""
+- name: base/Set hostname
+  action: command hostname "{{hostname}}"
+  when: hostname != ""
+- name: base/Set MOTD
+  action: template src="{{motd_src}}" dest=/etc/motd
+  when: motd_src != ""
