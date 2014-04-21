@@ -15,7 +15,8 @@ uwsgi_user: uwsgi
 uwsgi_group: uwsgi
 uwsgi_extra_packages: []
 uwsgi_module: "{{name}}.uwsgi"
-uwsgi_config:
+uwsgi_config: false
+uwsgi_app_config:
   src: false
   dest: false
 uwsgi_buffer_size: 4096
