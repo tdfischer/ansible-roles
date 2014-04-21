@@ -46,7 +46,7 @@
   when: plugin != ""
 - name: uwsgi-app-$name/Configure app
   action: template src={{uwsgi_config.src}} dest={{uwsgi_config.dest}} owner=$uwsgi_user group=$uwsgi_group
-  when: uwsgi_config.src
+  when: uwsgi_config.src is defined
   tags:
     - reconfigure
     - deploy
