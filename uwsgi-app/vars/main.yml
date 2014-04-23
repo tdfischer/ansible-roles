@@ -24,3 +24,4 @@ nginx_config: ""
 on_update: []
 git: ""
 plugin: ""
+nginx_priority: 50

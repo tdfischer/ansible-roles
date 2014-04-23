@@ -38,7 +38,10 @@
   tags:
     - bootstrap
 - name: uwsgi-app-$name/Install nginx<->uwsgi app config
-  action: template src=$uwsgi_nginx_config dest=/etc/nginx/uwsgi-conf.d/$name.conf
+  action:
+    module: template
+    src: "{{uwsgi_nginx_config}}"
+    dest: "/etc/nginx/uwsgi-conf.d/{{nginx_priority}}-{{name}}.conf"
   tags:
     - reconfigure
   notify:
