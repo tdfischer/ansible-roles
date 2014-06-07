@@ -1,6 +1,6 @@
 ---
 - name: uwsgi-server/Install packages
-  action: yum pkg=$item state=latest
+  action: yum pkg={{item}} state=latest
   tags:
     - packages
     - bootstrap
