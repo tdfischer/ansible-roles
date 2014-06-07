@@ -3,7 +3,7 @@ nginx_hostname: "{{name}}"
 nginx_config: ""
 nginx_root: ""
 nginx_alias: ""
-nginx_log: "/var/log/nginx/{{name}}"
+nginx_log: "/var/log/nginx/{{name}}-access.log"
 ssl_cert: false
 ssl_key: false
 nginx_append: []
