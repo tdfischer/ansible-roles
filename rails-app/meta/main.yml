@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: uwsgi-app
+    on_update: [rails-migrate, rails-bundle, rails-precompile-assets]
+    plugin: ruby

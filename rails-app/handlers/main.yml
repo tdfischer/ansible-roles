@@ -1,0 +1,7 @@
+---
+- name: rails-migrate
+  action: shell chdir={{uwsgi_app_path}} bin/rake db:migrate RAILS_ENV={{rails_env}}
+- name: rails-bundle
+  action: shell chdir={{uwsgi_app_path}} bundle install --deployment --without test
+- name: rails-precompile-assets
+  action: shell chdir={{uwsgi_app_path}} bin/rake assets:precomiple RAILS_ENV={{rails_env}}

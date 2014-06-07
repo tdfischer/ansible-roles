@@ -1,0 +1,7 @@
+---
+- name: rails-app/Install rails packages
+  action: yum pkg={{item}} state=latest
+  with_items:
+    - ruby
+    - rubygem-bundler
+    - ruby-devel
