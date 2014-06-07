@@ -1,11 +1,9 @@
 ---
-- name: www/Install packages
-  action: yum pkg=$item state=latest
+- name: www/Install nginx
+  action: yum pkg=nginx state=latest
   tags:
     - packages
     - bootstrap
-  with_items:
-    - nginx
 - name: www/Configure nginx
   action: template src=nginx.conf dest=/etc/nginx/nginx.conf
   tags:
