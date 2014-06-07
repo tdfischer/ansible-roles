@@ -1,16 +1,18 @@
 ---
-- name: www/Install nginx
-  action: yum pkg=nginx state=latest
+- name: nginx-core/Install packages
+  action: yum pkg={{item}} state=latest
   tags:
     - packages
     - bootstrap
-- name: www/Configure nginx
+  with_items:
+    - nginx
+- name: nginx-core/Configure nginx
   action: template src=nginx.conf dest=/etc/nginx/nginx.conf
   tags:
     - reconfigure
   notify:
     - nginx-reload
-- name: www/Enable nginx
+- name: nginx-core/Enable nginx
   action: service name=nginx state=reloaded enabled=true
   tags:
     - services
