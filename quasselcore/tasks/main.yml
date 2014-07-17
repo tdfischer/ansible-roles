@@ -1,14 +1,14 @@
 ---
 - name: quasselcore/Install packages
-  action: yum pkg=$item state=latest
+  action: yum pkg={{item}} state=latest
   with_items:
     - quassel-core
 - name: quasselcore/Create quassel group
   action: group name=quassel state=present
 - name: quasselcore/Create quassel user
-  action: user name=quassel comment="Hackerbots.net quassel" state=present groups=quassel home=${quassel_path} createhome=no group=quassel
+  action: user name=quassel comment="Hackerbots.net quassel" state=present groups=quassel home={{quassel_path}} createhome=no group=quassel
 - name: quasselcore/Create quassel data path
-  action: file path=${quassel_path} state=directory owner=quassel group=quassel mode=0770
+  action: file path={{quassel_path}} state=directory owner=quassel group=quassel mode=0770
 - name: quasselcore/Configure quassel service
   action: template src=quasselcore.service dest=/usr/lib/systemd/system/quasselcore.service
   notify:
